@@ -1,0 +1,52 @@
+App\Entity\User:
+  attributes:
+    id:
+      groups:
+        - 'user:read'
+        - 'user:read:collection'
+    email:
+      groups:
+        - 'user:read'
+        - 'user:read:collection'
+        - 'user:write'
+    firstname:
+      groups:
+        - 'user:read'
+        - 'user:read:collection'
+        - 'user:write'
+    lastname:
+      groups:
+        - 'user:read'
+        - 'user:read:collection'
+        - 'user:write'
+    createdAt:
+      groups:
+        - 'user:read'
+        - 'user:read:collection'
+    updatedAt:
+      groups:
+        - 'user:read'
+        - 'user:read:collection'
+    isActive:
+      groups:
+        - 'user:read'
+        - 'user:read:collection'
+        - 'user:write'
+    groups:
+      groups:
+        - 'user:read'
+        - 'user:write'
+
+App\Entity\Group:
+  attributes:
+    id:
+      groups:
+        - 'user:read'
+        - 'user:write'
+    name:
+      groups:
+        - 'user:read'
+    alias:
+      groups:
+        - 'user:read'
+

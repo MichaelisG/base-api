@@ -1,0 +1,28 @@
+App\Entity\Role:
+  attributes:
+    id:
+      groups:
+        - 'role:read'
+        - 'role:read:collection'
+    name:
+      groups:
+        - 'role:read'
+        - 'role:read:collection'
+        - 'role:write'
+    alias:
+      groups:
+        - 'role:read'
+        - 'role:read:collection'
+        - 'role:write'
+    groups:
+      groups:
+        - 'role:read'
+
+App\Entity\Group:
+  attributes:
+    id:
+      groups:
+        - 'role:read'
+    name:
+      groups:
+        - 'role:read'

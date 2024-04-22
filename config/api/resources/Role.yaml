@@ -1,0 +1,14 @@
+App\Entity\Role:
+  normalizationContext:
+    groups: ['role:read']
+  denormalizationContext:
+    groups: ['role:write']
+  operations:
+    ApiPlatform\Metadata\GetCollection:
+      filters: ['role.search_filter']
+      normalizationContext:
+        groups: ['role:read:collection']
+    ApiPlatform\Metadata\Post: ~
+    ApiPlatform\Metadata\Get: ~
+    ApiPlatform\Metadata\Put: ~
+    ApiPlatform\Metadata\Delete: ~
