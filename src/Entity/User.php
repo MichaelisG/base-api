@@ -103,7 +103,7 @@ class User
 
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
-        return $this->updateAt;
+        return $this->updatedAt;
     }
 
     public function setUpdatedAt(): static

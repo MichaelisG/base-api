@@ -6,6 +6,7 @@ use App\Repository\RoleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RoleRepository::class)]
 class Role
@@ -15,7 +16,13 @@ class Role
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
+    #[Assert\NotBlank(message: 'il faut préciser un role, je ne peux pas le deviner seul')]
+    #[Assert\Regex(
+        pattern: '/^ROLE_[A-Z0-9].*$/',
+        match: true,
+        message: 'Role must start with ROLE_ and contains capital letters',
+    )]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
