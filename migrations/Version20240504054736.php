@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240504053714 extends AbstractMigration
+final class Version20240504054736 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -24,8 +24,8 @@ final class Version20240504053714 extends AbstractMigration
         $this->addSql('CREATE TABLE mail_notification (
             id INT NOT NULL,
             subject VARCHAR(255) NOT NULL,
-            mail_to VARCHAR(255) NOT NULL,
-            mail_cc VARCHAR(255) DEFAULT NULL,
+            mail_to TEXT NOT NULL,
+            mail_cc TEXT DEFAULT NULL,
             text TEXT DEFAULT NULL,
             html TEXT DEFAULT NULL,
             code VARCHAR(255) NOT NULL,
@@ -36,6 +36,7 @@ final class Version20240504053714 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
+        $this->addSql('CREATE SCHEMA public');
         $this->addSql('DROP SEQUENCE mail_notification_id_seq CASCADE');
         $this->addSql('DROP TABLE mail_notification');
     }

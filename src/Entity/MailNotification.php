@@ -17,10 +17,10 @@ class MailNotification
     #[ORM\Column(length: 255)]
     private ?string $subject = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $mailTo = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $mailCc = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
