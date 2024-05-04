@@ -5,12 +5,17 @@ namespace App\Entity;
 use App\Repository\RoleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Event\PostPersistEventArgs;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpKernel\Log\Logger;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RoleRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Role
 {
+    private Logger $logger;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -34,9 +39,10 @@ class Role
     #[ORM\ManyToMany(targetEntity: Group::class, mappedBy: 'roles')]
     private Collection $groups;
 
-    public function __construct()
+    public function __construct(Logger $logger)
     {
         $this->groups = new ArrayCollection();
+        $this->logger = $logger;
     }
 
     public function getId(): ?int
@@ -93,5 +99,17 @@ class Role
         }
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCustomAlias(): void
+    {
+        $this->alias = $this->name;
+    }
+
+    #[ORM\PostPersist]
+    public function setLog(PostPersistEventArgs $entity): void
+    {
+        $this->logger->info($entity->getName());
     }
 }
