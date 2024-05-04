@@ -48,14 +48,12 @@ class TestMailCommand extends Command
         }
 
 
-        $mail = $this->mailer->prepareMail(
-            ['test@gmail.com', 'test2@gmail.com'],
-            [],
-            'test subject',
-            'this is a test email',
-            '<h3>this is a test email</h3>'
-        );
-        $this->mailer->send($mail);
+        $mail = $this->mailer->prepareMailByCode('NEW_ROLE');
+        if ($mail !== null) {
+            $this->mailer->send($mail);
+        } else {
+            $io->error('error while preparing mail, wrong code ?');
+        }
 
         $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
 
